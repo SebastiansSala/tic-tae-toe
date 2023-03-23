@@ -1,0 +1,111 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-size: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #191D2B;
+    border-bottom: 1px solid #2E344E;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    font-size: 35px;
+    gap: 40px;
+    align-items: center;
+    justify-content: center;
+    height: 800px;
+    background-color: #10121B;
+}
+
+.grid-container {
+  display: grid;
+  place-content: center;
+  grid-template: 150px 150px 150px / 150px 150px 150px;
+}
+
+#item-0 {
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
+  border-right: 1px solid #191D2B;
+  border-bottom: 1px solid #191D2B;
+}
+
+#item-1 {
+  grid-row: 1 / 2;
+  grid-column: 2 / 3;
+  border-left: 1px solid #191D2B;
+  border-right: 1px solid #191D2B;
+  border-bottom: 1px solid #191D2B;
+}
+
+#item-2 {
+  grid-row: 1 / 2;
+  grid-column: 3 / 4;
+  border-left: 1px solid #191D2B;
+  border-bottom: 1px solid #191D2B;
+}
+
+#item-3 {
+  grid-row: 2 / 3;
+  grid-column: 3 / 4;
+  border-top: 1px solid#191D2B;
+  border-left: 1px solid #191D2B;
+  border-bottom: 1px solid #191D2B;
+}
+
+#item-4 {
+  grid-row: 2 / 3;
+  grid-column: 2 / 3;
+  border: 1px solid #191D2B;
+}
+
+#item-5 {
+  grid-row: 2 / 3;
+  grid-column: 1 / 2;
+  border-right: 1px solid #191D2B;
+  border-top: 1px solid #191D2B;
+  border-bottom: 1px solid #191D2B;
+}
+
+#item-6 {
+  grid-row: 3 / 4;
+  grid-column: 1 / 2;
+  border-right: 1px solid #191D2B;
+  border-top: 1px solid #191D2B;
+}
+
+#item-7 {
+  grid-row: 3 / 4;
+  grid-column: 2 / 3;
+  border-left: 1px solid #191D2B;
+  border-top: 1px solid #191D2B;
+  border-right: 1px solid#191D2B;  
+}
+
+#item-8 {
+  grid-row: 3 / 4;
+  grid-column: 3 / 4;
+  border-left: 1px solid #191D2B;
+  border-top: 1px solid #191D2B;
+}
+
+.item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 120px;
+}
+
+.item:hover{
+    background-color: rgba(0, 0, 0, 0.055);
+    cursor: pointer;
+}
