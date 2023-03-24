@@ -6,15 +6,13 @@ const displayController = (() => {
   const item = document.querySelectorAll(".item");
   const currentPlayer = document.getElementById("player");
 
-  const updateScreen = () => {
-    const clear = () => {
-      item.forEach((element) => {
-        element.innerHTML = "";
-      });
-    };
-    if (!clickHandlerBoard) {
-    }
-    return { clear };
+  const clear = () => {
+    item.forEach((element) => {
+      element.innerHTML = "";
+    });
+    playerXMoves = [];
+    playerYMoves = [];
+    currentPlayer.textContent = 'X';
   };
 
   const checkWinner = (selections) => {
@@ -34,16 +32,17 @@ const displayController = (() => {
       playerXMoves.push(parseInt(element.id));
       console.log(playerXMoves);
       if (checkWinner(playerXMoves)) {
-        console.log("X wins!");
+        alert("X wins!");
+        clear();
       }
-    } else {
+    } else{
       playerYMoves.push(parseInt(element.id));
       console.log(playerYMoves);
       if (checkWinner(playerYMoves)) {
-        console.log("O wins!");
+        alert("O wins!");
+        clear();
       }
     }
-
     currentPlayer.textContent = currentPlayer.textContent === "X" ? "O" : "X";
   };
 
@@ -54,8 +53,6 @@ const displayController = (() => {
       });
     });
   };
-
-  const clickHandlerBoard = () => {};
 
   const winConditions = [
     [0, 1, 2],
@@ -68,7 +65,7 @@ const displayController = (() => {
     [2, 5, 8],
   ];
 
-  return { updateScreen, render, clickHandlerBoard };
+  return {render};
 })();
 
 displayController.render();
