@@ -28,25 +28,55 @@ const displayController = (() => {
   };
 
   const updateBoardWithIA = (element) => {
-    let filteredMoves = moves.filter((move) => {
-      return !playerXMoves.includes(move) && !playerYMoves.includes(move);
-    });
+
     if (element.textContent !== "") {
       return;
     }
+
     if (currentPlayer.textContent === "X") {
       element.innerHTML = currentPlayer.textContent;
       playerXMoves.push(parseInt(element.id));
       if (checkWinner(playerXMoves)) {
         alert("X wins!");
         clear();
+        return
+      }
+    }
+    
+    let filteredMoves = moves.filter((move) => {
+      return !playerXMoves.includes(move) && !playerYMoves.includes(move);
+    });
+
+    currentPlayer.textContent = 'O';
+
+    const randomIndex = getRandomInt(filteredMoves);
+    const move = filteredMoves[randomIndex];
+    const moveElement = document.getElementById(`${move}`);
+    moveElement.innerHTML = currentPlayer.textContent;
+    playerYMoves.push(move);
+    if (checkWinner(playerYMoves)) {
+      alert("O wins!");
+      clear();
+      return
+    }
+    currentPlayer.textContent = 'X';
+  };
+
+  const updateBoard = (element) => {
+    if (element.textContent !== "") {
+      return;
+    }
+    element.innerHTML = currentPlayer.textContent;
+    if (currentPlayer.textContent === "X") {
+      playerXMoves.push(parseInt(element.id));
+      console.log(playerXMoves);
+      if (checkWinner(playerXMoves)) {
+        alert("X wins!");
+        clear();
       }
     } else {
-      const randomIndex = getRandomInt(filteredMoves);
-      const move = filteredMoves[randomIndex];
-      playerYMoves.push(move);
-      const moveElement = document.getElementById(`${move}`);
-      moveElement.innerHTML = currentPlayer.textContent;
+      playerYMoves.push(parseInt(element.id));
+      console.log(playerYMoves);
       if (checkWinner(playerYMoves)) {
         alert("O wins!");
         clear();
@@ -78,27 +108,3 @@ const displayController = (() => {
 })();
 
 displayController.render();
-
-/*
-  const updateBoard = (element) => {
-    if (element.textContent !== "") {
-      return;
-    }
-    element.innerHTML = currentPlayer.textContent;
-    if (currentPlayer.textContent === "X") {
-      playerXMoves.push(parseInt(element.id));
-      console.log(playerXMoves);
-      if (checkWinner(playerXMoves)) {
-        alert("X wins!");
-        clear();
-      }
-    } else{
-      playerYMoves.push(parseInt(element.id));
-      console.log(playerYMoves);
-      if (checkWinner(playerYMoves)) {
-        alert("O wins!");
-        clear();
-      }
-    }
-    currentPlayer.textContent = currentPlayer.textContent === "X" ? "O" : "X";
-  };*/
