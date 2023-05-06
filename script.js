@@ -12,11 +12,11 @@ const displayController = (() => {
   const clear = () => {
     item.forEach((element) => {
       element.innerHTML = "";
+      element.textContent = "";
     });
     playerXMoves = [];
     playerYMoves = [];
     currentPlayer.textContent = "X";
-    render();
   };
 
   const checkWinner = (selections) => {
@@ -28,7 +28,6 @@ const displayController = (() => {
   };
 
   const updateBoardWithIA = (element) => {
-
     if (element.textContent !== "") {
       return;
     }
@@ -39,15 +38,19 @@ const displayController = (() => {
       if (checkWinner(playerXMoves)) {
         alert("X wins!");
         clear();
-        return
+        return;
       }
     }
-    
+    if (playerXMoves.length === 5 && playerYMoves.length === 4) {
+      clear();
+      return;
+    }
+
     let filteredMoves = moves.filter((move) => {
       return !playerXMoves.includes(move) && !playerYMoves.includes(move);
     });
 
-    currentPlayer.textContent = 'O';
+    currentPlayer.textContent = "O";
 
     const randomIndex = getRandomInt(filteredMoves);
     const move = filteredMoves[randomIndex];
@@ -57,9 +60,9 @@ const displayController = (() => {
     if (checkWinner(playerYMoves)) {
       alert("O wins!");
       clear();
-      return
+      return;
     }
-    currentPlayer.textContent = 'X';
+    currentPlayer.textContent = "X";
   };
 
   const updateBoard = (element) => {
